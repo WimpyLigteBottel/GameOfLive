@@ -3,5 +3,9 @@ Trying to make simple game of live program in java in console
 
 
 
-Run the main java file and it will resutls in your current project location.
-Then use the "BrowserResultsDisplayer.html" to display the results
+#How to run?
+- Step 1: mvn clean package
+- Step 2: grab the jar file '/target/GameOfLive-executable.jar'
+- Step 3: make sure gridmap is in the same location as jar
+- Step 4: double click jar
+- Step 5: Use browserResultsDisplayer.html
