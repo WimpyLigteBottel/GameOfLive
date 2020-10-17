@@ -39,10 +39,11 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
                             <mainClass>
                                 com.wimpy.Main
                             </mainClass>
+                            <finalName>GameOfLive</finalName>
+                            <classifier>executable</classifier>
                         </configuration>
                     </execution>
                 </executions>
