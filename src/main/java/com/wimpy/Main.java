@@ -1,9 +1,9 @@
 package com.wimpy;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main {
@@ -13,9 +13,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             new Main();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -24,18 +22,23 @@ public class Main {
     public Main() throws IOException, InterruptedException {
 
 
-        Path path = Paths.get("G:\\Code repositery\\GameOfLiveJava\\src\\main\\resources\\gridmap");
+        String backspace = "\\\\";
+        String baseDir = System.getProperty("user.dir").replaceAll(backspace, "/");
+        boolean[][] map = MapUtils.readMap(Paths.get(baseDir + "/gridmap"));
 
-
-        boolean[][] map = MapUtils.readMap(path);
+        String resultsPath = baseDir + "/results";
+        File file = new File(resultsPath);
+        file.mkdir();
 
 
         for (int i = 0; i < 1000; i++) {
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("G:\\Code repositery\\GameOfLiveJava\\results\\result-" + i + ".txt"))) {
+            String fileName = resultsPath + "/result-" + i + ".txt";
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
                 map = game.process(map);
                 bw.write(MapUtils.printMap(map));
+                bw.flush();
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
         }
 

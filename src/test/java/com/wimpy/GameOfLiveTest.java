@@ -13,16 +13,10 @@ public class GameOfLiveTest {
     private static final String basePath = "G:\\Code repositery\\GameOfLiveJava\\src\\test\\resources\\";
 
 
-    private GameOfLive gameOfLive;
-
-    @BeforeEach
-    public void method() {
-        gameOfLive = new GameOfLive();
-    }
-
+    private GameOfLive gameOfLive = new GameOfLive();
 
     @Test
-    void process_allDead() {
+    public void testprocess_allDead() {
 
         boolean[][] expected = new boolean[10][10];
         boolean[][] newLife = gameOfLive.process(expected);
@@ -33,7 +27,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_block() {
+    public void testprocess_block() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "block"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "block"));
@@ -46,7 +40,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_beehive() {
+    public void testprocess_beehive() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "bee-hive"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "bee-hive"));
@@ -59,7 +53,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_boat() {
+    public void testprocess_boat() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "boat"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "boat"));
@@ -72,7 +66,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_tub() {
+    public void testprocess_tub() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "tub"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "tub"));
@@ -85,7 +79,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_loaf() {
+    public void testprocess_loaf() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "loaf"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "loaf"));
@@ -99,7 +93,7 @@ public class GameOfLiveTest {
 
 
     @Test
-    void process_blinker() {
+    public void testprocess_blinker() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "blinker_1"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "blinker_2"));
@@ -112,7 +106,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void process_beacon() {
+    public void testprocess_beacon() {
 
         boolean[][] block = MapUtils.readMap(Paths.get(basePath + "beacon_1"));
         boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "beacon_2"));
@@ -125,7 +119,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void testCheckIfILive() {
+    public void testCheckIfILive() {
 
         assertFalse(gameOfLive.checkIfILive(false, Arrays.asList(false, false, false, false)));
         assertFalse(gameOfLive.checkIfILive(true, Arrays.asList(false, false, false, false)));
@@ -137,7 +131,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void isAlive() {
+    public void testisAlive() {
         boolean[][] map = new boolean[10][10];
         map[0][0] = true;
 
@@ -146,7 +140,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void isRightAlive() {
+    public void testisRightAlive() {
 
         boolean[][] map = new boolean[10][10];
         map[5][5] = true;
@@ -157,7 +151,7 @@ public class GameOfLiveTest {
 
 
     @Test
-    void isLeftAlive() {
+    public void testisLeftAlive() {
         boolean[][] map = new boolean[10][10];
         map[0][1] = true;
 
@@ -166,7 +160,7 @@ public class GameOfLiveTest {
     }
 
     @Test
-    void isUpAlive() {
+    public void testisUpAlive() {
 
 
         boolean[][] map = new boolean[10][10];
@@ -179,7 +173,7 @@ public class GameOfLiveTest {
 
 
     @Test
-    void isDownAlive() {
+    public void testisDownAlive() {
 
 
         boolean[][] map = new boolean[10][10];
