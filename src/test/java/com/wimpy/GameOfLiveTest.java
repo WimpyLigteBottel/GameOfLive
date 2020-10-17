@@ -1,0 +1,195 @@
+package com.wimpy;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class GameOfLiveTest {
+
+    private static final String basePath = "G:\\Code repositery\\GameOfLiveJava\\src\\test\\resources\\";
+
+
+    private GameOfLive gameOfLive;
+
+    @BeforeEach
+    public void method() {
+        gameOfLive = new GameOfLive();
+    }
+
+
+    @Test
+    void process_allDead() {
+
+        boolean[][] expected = new boolean[10][10];
+        boolean[][] newLife = gameOfLive.process(expected);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_block() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "block"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "block"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_beehive() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "bee-hive"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "bee-hive"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_boat() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "boat"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "boat"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_tub() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "tub"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "tub"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_loaf() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "loaf"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "loaf"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+
+    @Test
+    void process_blinker() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "blinker_1"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "blinker_2"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void process_beacon() {
+
+        boolean[][] block = MapUtils.readMap(Paths.get(basePath + "beacon_1"));
+        boolean[][] expected = MapUtils.readMap(Paths.get(basePath + "beacon_2"));
+
+        boolean[][] newLife = gameOfLive.process(block);
+
+
+        assertEquals(MapUtils.printMap(expected), MapUtils.printMap(newLife));
+
+    }
+
+    @Test
+    void testCheckIfILive() {
+
+        assertFalse(gameOfLive.checkIfILive(false, Arrays.asList(false, false, false, false)));
+        assertFalse(gameOfLive.checkIfILive(true, Arrays.asList(false, false, false, false)));
+        assertFalse(gameOfLive.checkIfILive(true, Arrays.asList(true, false, false, false)));
+        assertTrue(gameOfLive.checkIfILive(true, Arrays.asList(true, true, false, false)));
+        assertTrue(gameOfLive.checkIfILive(true, Arrays.asList(true, true, true, false)));
+        assertFalse(gameOfLive.checkIfILive(true, Arrays.asList(true, true, true, true)));
+
+    }
+
+    @Test
+    void isAlive() {
+        boolean[][] map = new boolean[10][10];
+        map[0][0] = true;
+
+        assertFalse(gameOfLive.isAlive(map, new GameOfLive.Point(1, 1)));
+        assertTrue(gameOfLive.isAlive(map, new GameOfLive.Point(0, 0)));
+    }
+
+    @Test
+    void isRightAlive() {
+
+        boolean[][] map = new boolean[10][10];
+        map[5][5] = true;
+
+        assertTrue(gameOfLive.isRightAlive(map, new GameOfLive.Point(4, 5)));
+        assertFalse(gameOfLive.isRightAlive(map, new GameOfLive.Point(5, 5)));
+    }
+
+
+    @Test
+    void isLeftAlive() {
+        boolean[][] map = new boolean[10][10];
+        map[0][1] = true;
+
+        assertTrue(gameOfLive.isLeftAlive(map, new GameOfLive.Point(1, 1)));
+        assertFalse(gameOfLive.isLeftAlive(map, new GameOfLive.Point(5, 5)));
+    }
+
+    @Test
+    void isUpAlive() {
+
+
+        boolean[][] map = new boolean[10][10];
+        map[1][0] = true;
+
+        assertTrue(gameOfLive.isUpAlive(map, new GameOfLive.Point(1, 1)));
+        assertFalse(gameOfLive.isUpAlive(map, new GameOfLive.Point(5, 5)));
+
+    }
+
+
+    @Test
+    void isDownAlive() {
+
+
+        boolean[][] map = new boolean[10][10];
+        map[1][1] = true;
+
+        MapUtils.printMap(map);
+
+        assertTrue(gameOfLive.isDownAlive(map, new GameOfLive.Point(1, 0)));
+        assertFalse(gameOfLive.isDownAlive(map, new GameOfLive.Point(5, 5)));
+
+    }
+
+}

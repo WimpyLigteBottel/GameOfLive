@@ -1,0 +1,64 @@
+<html>
+<head></head>
+<title>GAME OF LIVE!</title>
+<body>
+<div>
+    <input type="file" id="file-input" multiple/>
+    <input type="button" id="start" onclick="start()" value="START"/>
+    <h3>Contents of the file:</h3>
+    <pre id="file-content"></pre>
+</div>
+
+<div class="grid">
+
+</div>
+
+
+</body>
+</html>
+<script>
+
+    var GLOBAL_FILES = {};
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function start(){
+        for(let i=0; i < GLOBAL_FILES.length ; i++){
+
+             await sleep(500);
+             var file = GLOBAL_FILES[i];
+             if (!file) {
+               return;
+             }
+             var reader = new FileReader();
+             reader.onload = function(e) {
+               var contents = e.target.result;
+
+               displayContents(contents);
+             };
+
+
+            reader.readAsText(file);
+
+        }
+    }
+
+
+    function readInputFiles(e) {
+        GLOBAL_FILES = e.target.files;
+    }
+
+
+    function displayContents(contents) {
+      contents = contents.replaceAll(".","□");
+      contents = contents.replaceAll("X","■");
+      var element = document.getElementById('file-content');
+      element.textContent = contents;
+    }
+
+
+    document.getElementById('file-input').addEventListener('change', readInputFiles, false);
+
+</script>
