@@ -3,9 +3,9 @@ package com.wimpy;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameOfLive {
+public class GameOfLife {
 
-    public GameOfLive() {
+    public GameOfLife() {
     }
 
     public boolean[][] process(boolean[][] currentMap) {
